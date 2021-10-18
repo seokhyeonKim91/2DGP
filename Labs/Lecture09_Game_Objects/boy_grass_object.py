@@ -23,6 +23,29 @@ class Boy:
     def draw(self):
         self.image.clip_draw(self.frame*100, 0, 100, 100, self.x, self.y)
 
+class Small_Ball:
+    def __init__(self):
+        self.image = load_image('ball21x21.png')
+        self.x, self.y = random.randint(100, 700), 500
+        self.frame = 0
+    def update(self):
+        ball_v =  random.randint(1, 10)
+        self.y -= ball_v
+        if self.y <= 30:
+            self.y = 30
+    def draw(self):
+        self.image.draw()
+class Big_Ball:
+    def __init__(self):
+        self.image = load_image('ball41x41.png')
+        self.x, self.y = random.randint(100, 700), 500
+        self.frame = 0
+    def update(self):
+        ball_v =  random.randint(1, 10)
+        self.y -= ball_v
+        if self.y <= 30:
+            self.y = 30
+
 def handle_events():
     global running
     events = get_events()
@@ -37,9 +60,10 @@ def handle_events():
 open_canvas()
 
 grass =Grass() #Grass 라는 클래스로부터, grass 객체를 생성한다.
-# boy = Boy()
 team = [ Boy() for i in range(11)]
-
+small_balls = [ Small_Ball() for i in range(5) ]
+big_balls = [ Big_Ball() for i in range(5) ]
+ball_v = 0
 
 running = True
 
@@ -52,13 +76,19 @@ while running:
     #Game logic
     for boy in team:
         boy.update() # 소년의 상호작용
-
+    for Sballs in small_balls:
+        Sballs.update()
+    for Bballs in big_balls:
+        Bballs.update
     #Game drawing
     clear_canvas()
     grass.draw()
     for boy in team:
         boy.draw()
     update_canvas()
-
+    for Sballs in small_balls:
+        Sballs.draw()
+    for Bballs in team:
+        Bballs.draw()
     delay(0.05)
 # finalization code
