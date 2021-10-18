@@ -4,12 +4,10 @@ from pico2d import *
 # Game object class here
 
 class Grass:
-    def __init__(self): # 생성자
+    def __init__(self):
         self.image = load_image('grass.png')
-
     def draw(self):
         self.image.draw(400, 30)
-    pass
 
 class Boy:
     def __init__(self):
@@ -59,10 +57,10 @@ def handle_events():
 
 open_canvas()
 
-grass =Grass() #Grass 라는 클래스로부터, grass 객체를 생성한다.
-team = [ Boy() for i in range(11)]
-small_balls = [ Small_Ball() for i in range(5) ]
-big_balls = [ Big_Ball() for i in range(5) ]
+grass = Grass()
+team = [Boy() for i in range(11)]
+small_balls = [Small_Ball() for i in range(5)]
+big_balls = [Big_Ball() for i in range(5)]
 ball_v = 0
 
 running = True
