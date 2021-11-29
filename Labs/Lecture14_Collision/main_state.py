@@ -5,6 +5,7 @@ import os
 from pico2d import *
 import game_framework
 import game_world
+import server
 
 from boy import Boy
 from grass import Grass
@@ -15,6 +16,7 @@ name = "MainState"
 boy = None
 grass = None
 balls = []
+brick = None
 big_balls = []
 
 
@@ -65,6 +67,17 @@ def handle_events():
 def update():
     for game_object in game_world.all_objects():
         game_object.update()
+
+
+    for ball in balls.copy():
+        if collide(ball, grass):
+            ball.stop()
+        if collide(ball, boy):
+            balls.remove(ball)
+            game_world.remove_object(ball)
+        elif collide(ball, brick):
+            brick.attach_ball(ball)
+            ball.remove(ball)
 
     # fill here for collision check
 

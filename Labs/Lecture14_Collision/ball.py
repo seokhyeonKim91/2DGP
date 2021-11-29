@@ -11,6 +11,8 @@ class Ball:
             Ball.image = load_image('ball21x21.png')
         self.x, self.y, self.fall_speed = random.randint(0, 1600-1), 60, 0
 
+        self.parent = self
+
     def get_bb(self):
         # fill here
         return 0,0,0,0
@@ -23,6 +25,8 @@ class Ball:
         self.y -= self.fall_speed * game_framework.frame_time
 
     #fill here for def stop
+    def stop(self):
+        self.
 
 
 # fill here
