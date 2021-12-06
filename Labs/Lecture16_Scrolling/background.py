@@ -41,10 +41,13 @@ class FixedBackground:
 
     def draw(self):
         # fill here
+        self.image.clip_draw_to_origin(self.window_left, self.window_bottom, server.background.canvas_width, server.background.canvas_height)
         pass
 
     def update(self):
         # fill here
+        self.window_left = clamp(0, server.boy.x - server.background.canvas_width // 2, server.background.w - 1)
+        self.window_bottom = clamp(0, server.boy.y - server.background.canvas_height // 2, server.background.canvas_height - 1)
         pass
 
     def handle_event(self, event):
